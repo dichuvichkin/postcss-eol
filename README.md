@@ -1,4 +1,4 @@
-# POSTCSS-EOL [![Build Status][ci-img]][ci]
+# postcss-eol [![Build Status][ci-img]][ci]
 
 [PostCSS] plugin replaces EOL of files.
 
@@ -40,6 +40,12 @@
       padding: 5px;\r\n
   }\r\n
 }\r\n
+```
+
+## Install
+
+```js
+npm install --save-dev postcss-eol
 ```
 
 ## Usage
