@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const { EOL } = require('os');
 
 const postcss = require('postcss');
 
@@ -8,23 +8,22 @@ function run(input, output) {
     return postcss([plugin()])
         .process(input)
         .then(result => {
-            expect(result.css).to.deep.equal(output);
-            expect(result.warnings().length).to.deep.equal(0);
+            expect(result.css).toEqual(output);
+            expect(result.warnings().length).toBe(0);
         });
 }
 
 const inAtRule = '@media screen and (min-width: 480px) {\nbody {\nbackground-color: lightgreen;\n}\n}\n';
-const outAtRule = '@media screen and (min-width: 480px) {\r\nbody {\r\nbackground-color: lightgreen;\r\n}\r\n}\r\n';
+const outAtRule = `@media screen and (min-width: 480px) {${EOL}body {${EOL}background-color: lightgreen;${EOL}}${EOL}}${EOL}`;
 
 const inIds = '#main {\nborder: 1px solid black;\n}\n';
-const outIds = '#main {\r\nborder: 1px solid black;\r\n}\r\n';
+const outIds = `#main {${EOL}border: 1px solid black;${EOL}}${EOL}`;
 
 const inClass = 'ul li {\npadding: 5px;\n}\n';
-const outClass = 'ul li {\r\npadding: 5px;\r\n}\r\n';
+const outClass = `ul li {${EOL}padding: 5px;${EOL}}${EOL}`;
 
 const inOne = 'ul li {\n\npadding: 5px;\n\n}\n\n';
-const outOne = 'ul li {\r\n\r\npadding: 5px;\r\n\r\n}\r\n\r\n';
-
+const outOne = `ul li {${EOL}${EOL}padding: 5px;${EOL}${EOL}}${EOL}${EOL}`;
 
 describe('Check EOL', () => {
     it('Check atRule EOL', () => {
