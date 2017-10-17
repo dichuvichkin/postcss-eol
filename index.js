@@ -3,7 +3,7 @@ const { EOL } = require('os');
 
 const getCurrentValue = (raws, current) => {
     /* eslint no-control-regex: 0*/
-    const re = new RegExp('\r?\n', 'g');
+    const re = new RegExp('\n', 'g');
     if (typeof raws[current] === 'boolean') {
         return {
             [current]: raws[current]
