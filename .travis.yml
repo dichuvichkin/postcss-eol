@@ -1,8 +1,7 @@
 language: node_js
-cache: yarn
 script: [
   "yarn run test"
-],
+]
 node_js:
   - stable
   - "6"
