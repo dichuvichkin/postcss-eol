@@ -1,6 +1,6 @@
 {
   "name": "postcss-eol",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Replace EOL of files",
   "keywords": [
     "postcss",
@@ -34,7 +34,10 @@
       "jest": true
     },
     "rules": {
-      "max-len": [1, 160]
+      "max-len": [
+        1,
+        160
+      ]
     }
   }
 }
