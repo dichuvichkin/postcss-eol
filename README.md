@@ -3,8 +3,7 @@
 [PostCSS] plugin replaces EOL of files.
 
 [PostCSS]: https://github.com/postcss/postcss
-[ci-img]:  https://travis-ci.org/GITHUB_NAME/PLUGIN_NAME.svg
-[ci]:      https://travis-ci.org/GITHUB_NAME/PLUGIN_NAME
+[ci]:      https://travis-ci.org/dichuvichkin/postcss-eol
 
 ```css
 .foo {\n
