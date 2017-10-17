@@ -2,13 +2,10 @@ const postcss = require('postcss');
 
 const plugin = require('./');
 
-function run(input, output, opts) {
-    return postcss([plugin(opts)])
+function run(input) {
+    return postcss([plugin()])
         .process(input)
-        .then(result => {
-            expect(result.css).toEqual(output);
-            expect(result.warnings().length).toBe(0);
-        });
+        .then(result => result.css);
 }
 
 const inAtRule = '@media screen and (min-width: 480px) {\nbody {\nbackground-color: lightgreen;\n}\n}\n';
@@ -22,14 +19,20 @@ const outClass = 'ul li {\r\npadding: 5px;\r\n}\r\n';
 
 describe('Check EOL', () => {
     it('Check atRule EOL', () => {
-        return run(inAtRule, outAtRule, {});
+        return run(inAtRule).then(scss => {
+            expect(scss).toEqual(outAtRule);
+        });
     });
 
     it('Check ids EOL', () => {
-        return run(inIds, outIds, {});
+        return run(inIds).then(scss => {
+            expect(scss).toEqual(outIds);
+        });
     });
 
     it('Check class EOL', () => {
-        return run(inClass, outClass, {});
+        return run(inClass).then(scss => {
+            expect(scss).toEqual(outClass);
+        });
     });
 });
