@@ -1,19 +1,27 @@
-var postcss = require('postcss');
+const postcss = require('postcss');
 
-var plugin = require('./');
+const plugin = require('./');
 
 function run(input, output, opts) {
-    return postcss([ plugin(opts) ]).process(input)
+    return postcss([plugin(opts)])
+        .process(input)
         .then(result => {
             expect(result.css).toEqual(output);
             expect(result.warnings().length).toBe(0);
         });
 }
 
-/* Write tests here
+const inAtRule = '@media screen and (min-width: 480px) {\nbody {\nbackground-color: lightgreen;\n}\n}\n';
+const outAtRule = '@media screen and (min-width: 480px) {\r\nbody {\r\nbackground-color: lightgreen;\r\n}\r\n}\r\n';
 
-it('does something', () => {
-    return run('a{ }', 'a{ }', { });
+const inIds = '#main {\nborder: 1px solid black;\n}\n';
+const outIds = '#main {\r\nborder: 1px solid black;\r\n}\r\n';
+
+const inClass = 'ul li {\npadding: 5px;\n}\n';
+const outClass = 'ul li {\r\npadding: 5px;\r\n}\r\n';
+
+it('Check EOL', () => {
+    run(inAtRule, outAtRule, {});
+    run(inIds, outIds, {});
+    run(inClass, outClass, {});
 });
-
-*/

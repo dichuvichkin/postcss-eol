@@ -1,13 +1,22 @@
-var postcss = require('postcss');
+const postcss = require('postcss');
+const { EOL } = require('os');
 
-module.exports = postcss.plugin('PLUGIN_NAME', function (opts) {
-    opts = opts || {};
+const replaceToEOL = (raws = {}) =>
+    Object.keys(raws).reduce((previous, current) => {
+        const currentValue =
+            typeof raws[current] === 'boolean' ?
+            {
+                [current]: raws[current]
+            } :
+            {
+                [current]: raws[current].replace(/\r?\n/g, EOL)
+            };
+        return Object.assign(previous, currentValue);
+    }, {});
 
-    // Work with options here
-
-    return function (root, result) {
-
-        // Transform CSS AST here
-
-    };
+module.exports = postcss.plugin('postcss-eol', () => css => {
+    css.raws = replaceToEOL(css.raws);
+    css.walk(el => {
+        el.raws = replaceToEOL(el.raws);
+    });
 });
