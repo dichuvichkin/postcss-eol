@@ -1,3 +1,5 @@
+const { expect } = require('chai');
+
 const postcss = require('postcss');
 
 const plugin = require('./');
@@ -19,19 +21,19 @@ describe('Check EOL', () => {
     const outClass = 'ul li {\r\npadding: 5px;\r\n}\r\n';
     it('Check atRule EOL', () => {
         return run(inAtRule).then(scss => {
-            expect(scss).toEqual(outAtRule);
+            expect(scss).to.deep.equal(outAtRule);
         });
     });
 
     it('Check ids EOL', () => {
         return run(inIds).then(scss => {
-            expect(scss).toEqual(outIds);
+            expect(scss).to.deep.equal(outIds);
         });
     });
 
     it('Check class EOL', () => {
         return run(inClass).then(scss => {
-            expect(scss).toEqual(outClass);
+            expect(scss).to.deep.equal(outClass);
         });
     });
 });

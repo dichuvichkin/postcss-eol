@@ -18,15 +18,16 @@
   },
   "homepage": "https://github.com/dichuvichkin/postcss-eol",
   "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
     "postcss": "^6.0.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
-    "eslint-config-postcss": "^2.0.2",
-    "jest": "^20.0.0"
+    "eslint-config-postcss": "^2.0.2"
   },
   "scripts": {
-    "test": "jest && eslint *.js"
+    "test": "mocha ./*.test.js && eslint *.js"
   },
   "eslintConfig": {
     "extends": "eslint-config-postcss/es5",
