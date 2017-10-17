@@ -20,8 +20,14 @@ const outIds = '#main {\r\nborder: 1px solid black;\r\n}\r\n';
 const inClass = 'ul li {\npadding: 5px;\n}\n';
 const outClass = 'ul li {\r\npadding: 5px;\r\n}\r\n';
 
-it('Check EOL', () => {
-    run(inAtRule, outAtRule, {});
-    run(inIds, outIds, {});
-    run(inClass, outClass, {});
+it('Check atRule EOL', () => {
+    return run(inAtRule, outAtRule, {});
+});
+
+it('Check ids EOL', () => {
+    return run(inIds, outIds, {});
+});
+
+it('Check class EOL', () => {
+    return run(inClass, outClass, {});
 });
