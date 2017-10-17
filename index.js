@@ -2,6 +2,8 @@ const postcss = require('postcss');
 const { EOL } = require('os');
 
 const getCurrentValue = (raws, current) => {
+    /* eslint no-control-regex: 0*/
+    const re = new RegExp('\r?\n', 'g');
     if (typeof raws[current] === 'boolean') {
         return {
             [current]: raws[current]
@@ -10,12 +12,12 @@ const getCurrentValue = (raws, current) => {
 
     if (typeof raws[current] === 'object') {
         return {
-            [current]: raws[current].raw.replace(/\r?\n/g, EOL)
+            [current]: raws[current].raw.replace(re, EOL)
         };
     }
 
     return {
-        [current]: raws[current].replace(/\r?\n/g, EOL)
+        [current]: raws[current].replace(re, EOL)
     };
 };
 
