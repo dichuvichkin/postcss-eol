@@ -1,6 +1,6 @@
 {
   "name": "postcss-eol",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Replace EOL of files",
   "keywords": [
     "postcss",
